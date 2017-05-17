@@ -1,12 +1,23 @@
 <?php
 include("koneksi.php");
 if(isset($_POST['simpan'])){
-$query="insert into proses(Id_Customer,Tanggal_Pengajuan,progress,Tgl_Meeting_Progress,status)
+		$allowed_ext	= array("doc", "docx", "xls", "xlsx", "ppt", "pptx", "pdf", "rar", "zip");
+	$file_name		=$_FILES['file']['name'];
+	$file_size		=$_FILES['file']['size'];
+	$file_tmp		=$_FILES['file']['tmp_name'];
+	$gambar         = $file_name;
+    $file_ext       = strtolower(end(explode(".",$gambar)));
+	$tmp            = $file_tmp;
+	$lokasi          = 'files/'.$gambar.'.'.$file_ext;
+	
+		move_uploaded_file($tmp,$lokasi);
+$query="insert into proses(Id_Customer,Tanggal_Pengajuan,progress,Tgl_Meeting_Progress,status,berita_acara)
 Value ('".$_POST["Id_Customer"]."',
 		'".$_POST["Tanggal_Pengajuan"]."',
 		'".$_POST["progress"]."',
 		'".$_POST["Tgl_Meeting_Progress"]."',
-		'".$_POST["status"]."')";
+		'".$_POST["status"]."',
+		'".$lokasi."')";
 		
 
 $proses=mysql_query($query);
@@ -20,7 +31,7 @@ if ($proses){
 include('header.php');
 ?>
 
-<form method="post"/>
+<form method="post" enctype="multipart/form-data">
 <table border="1" class="table table-bordered">
 <tr>
 <td>Customer</td>
@@ -43,12 +54,16 @@ while($data=mysql_fetch_array($pk)){
 <tr>
 <td>progress(%)</td>
 <td><input type	="text"class="form-control" name="progress"/></td>
+</tr>
 <tr>
 <td>Tgl_Meeting_Progress</td>
 <td><input type	="text"class="form-control datepicker" name="Tgl_Meeting_Progress"/>
 <input type	="hidden"class="form-control " name="status" value="BELUM LUNAS"/>
 </td>
 </tr>
+<tr>
+<td>Upload Berita acara</td>
+<td> <input type="file" name="file" id="textfield3" class="form-control" /></td>
 </tr>
 <tr>
 <td><input type="submit"value="simpan"class="btn btn-danger" name="simpan"/></td>

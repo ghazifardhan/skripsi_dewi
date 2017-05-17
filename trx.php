@@ -1,25 +1,16 @@
 <?php
 include("koneksi.php");
 if(isset($_POST['simpan'])){
-	$allowed_ext	= array("doc", "docx", "xls", "xlsx", "ppt", "pptx", "pdf", "rar", "zip");
-	$file_name		=$_FILES['file']['name'];
-	$file_size		=$_FILES['file']['size'];
-	$file_tmp		=$_FILES['file']['tmp_name'];
-	$nama			=$_POST['nm_gambar'];
-	$gambar         = $file_name;
-    $file_ext       = strtolower(end(explode(".",$gambar)));
-	$tmp            = $file_tmp;
-	$lokasi          = 'files/'.$gambar.'.'.$file_ext;
-		move_uploaded_file($tmp,$lokasi);
+
 $jumlah = $_POST["Sisa_Tagihan"] - $_POST["Jumlah_Tagihan"];
-$query="insert into trx(Id_Proses,Nilai_Kontrak,Id_Kontrak, Tgl_Pengajuan,Jumlah_Tagihan,Sisa_Tagihan,berita_acara)
+$query="insert into trx(Id_Proses,Nilai_Kontrak,Id_Kontrak, Tgl_Pengajuan,Jumlah_Tagihan,Sisa_Tagihan)
 Value ('".$_POST["Id_Proses"]."',
 		'".$_POST["Nilai_Kontrak"]."',
 		'".$_POST["Id_Kontrak"]."',
 		'".$_POST["Tgl_Pengajuan"]."',
 		'".$_POST["Jumlah_Tagihan"]."',
-		'".$jumlah."',
-		'".$lokasi."')";
+		'".$jumlah."')";
+
 
 $proses=mysql_query($query);
 
@@ -83,10 +74,7 @@ while($data=mysql_fetch_array($pk)){
 <td>Jenis Kontrak</td>
 <td> <input type="text"class="form-control" name="" id="jenis_kontrak" readonly></td>
 </tr>
-<tr>
-<td>Upload Berita acara</td>
-<td> <input type="file" name="file" id="textfield3" class="form-control" /></td>
-</tr>
+
 
 <tr>
 <td><input type="submit"value="simpan"class="btn btn-danger" name="simpan"/></td>

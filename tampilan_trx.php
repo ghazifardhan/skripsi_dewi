@@ -31,7 +31,7 @@ include('header.php');
 <td>Tgl_Pengajuan</td>
 <td>Jumlah_Tagihan</td>
 <td>Sisa_Tagihan</td>
-<td>Berita Acara</td>
+
 </tr>
 <?php
 
@@ -60,7 +60,7 @@ while ($proses=mysql_fetch_array($list_trx)){
 	<td><?php echo $proses['Tgl_Pengajuan'];?></td>
 	<td><?php echo $proses['Jumlah_Tagihan'];?></td>
     <td>Rp.<?php echo number_format($proses['Sisa_Tagihan']);?></td>
-	<td><a href="<?php echo $proses['berita_acara'] ?>"><?php echo $proses['berita_acara'] ?></a></td>
+
 	
     <td><a class="btn btn-warning" href="Update_trx.php?Id_Proses=<?php echo $proses['Id_Proses'];?>">Edit</a><td>
      <td><a class="btn btn-danger" href="delete_trx.php?Id_Proses=<?php echo $proses['Id_Proses'];?>">Delete</a><td>
@@ -88,7 +88,7 @@ while ($proses=mysql_fetch_array($list_trx)){
 <td>Tgl_Pengajuan</td>
 <td>Jumlah_Tagihan</td>
 <td>Sisa_Tagihan</td>
-<td>Berita Acara</td>
+
 </tr>
 <?php
 
@@ -117,7 +117,7 @@ while ($proses=mysql_fetch_array($list_trx)){
 	<td><?php echo $proses['Tgl_Pengajuan'];?></td>
 	<td><?php echo $proses['Jumlah_Tagihan'];?></td>
     <td>Rp.<?php echo number_format($proses['Sisa_Tagihan']);?></td>
-	<td><a href="<?php echo $proses['berita_acara'] ?>"><?php echo $proses['berita_acara'] ?></a></td>
+<!--	<td><a href="<php echo $proses['berita_acara'] ?>"><php echo $proses['berita_acara'] ?></a></td>-->
 	
     <td><a class="btn btn-warning" href="Update_trx.php?Id_Proses=<?php echo $proses['Id_Proses'];?>">Edit</a><td>
      <td><a class="btn btn-danger" href="delete_trx.php?Id_Proses=<?php echo $proses['Id_Proses'];?>">Delete</a><td>

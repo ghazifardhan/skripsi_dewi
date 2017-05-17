@@ -17,6 +17,7 @@ include('header.php');
 <td>progress</td>
 <td>Tgl_Meeting_Progress</td>
 <td>Status</td>
+<td>Berita Acara</td>
 <td colspan="2">Action</td>
 </tr>
 <?php
@@ -31,7 +32,7 @@ while ($proses=mysql_fetch_array($list_proses)){
 	<td><?php echo $proses['progress'];?></td>
     <td><?php echo $proses['Tgl_Meeting_Progress'];?></td>
 	<td><?php echo $proses['status'];?></td>
-
+	<td><a href="<?php echo $proses['berita_acara'] ?>"><?php echo $proses['berita_acara'] ?></a></td>
 	
     <td><a class="btn btn-warning" href="Update_proses.php?Id_Customer=<?php echo $proses['Id_Customer'];?>">Edit</a><td>
      <td><a class="btn btn-danger" href="delete_proses.php?Id_Customer=<?php echo $proses['Id_Customer'];?>">Delete</a><td>
