@@ -11,7 +11,7 @@ if(isset($_POST['simpan'])){
 	$lokasi          = 'files/'.$gambar.'.'.$file_ext;
 	
 		move_uploaded_file($tmp,$lokasi);
-$query="insert into proses(Id_Customer,Tanggal_Pengajuan,progress,Tgl_Meeting_Progress,status,berita_acara)
+$query="INSERT into proses(Id_Customer,Tanggal_Pengajuan,progress,Tgl_Meeting_Progress,status,berita_acara)
 Value ('".$_POST["Id_Customer"]."',
 		'".$_POST["Tanggal_Pengajuan"]."',
 		'".$_POST["progress"]."',

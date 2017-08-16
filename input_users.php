@@ -45,6 +45,7 @@ include('header.php');
 <option value="Manager">Manager</option>
 <option value="Konsultan">Konsultan</option>
 <option value="Admin">Admin</option>
+<option value="Kontraktor">Kontraktor</option>
 
 </select></td>
 </tr>

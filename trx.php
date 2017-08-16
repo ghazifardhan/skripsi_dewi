@@ -2,7 +2,15 @@
 include("koneksi.php");
 if(isset($_POST['simpan'])){
 
-$jumlah = $_POST["Sisa_Tagihan"] - $_POST["Jumlah_Tagihan"];
+if($_POST["Sisa_Tagihan"] == 0)
+{
+	$jumlah = $_POST['Nilai_Kontrak'] - $_POST["Jumlah_Tagihan"];
+}
+else
+{
+	$jumlah = $_POST["Sisa_Tagihan"] - $_POST["Jumlah_Tagihan"];
+}
+//die(var_dump($_POST));
 $query="insert into trx(Id_Proses,Nilai_Kontrak,Id_Kontrak, Tgl_Pengajuan,Jumlah_Tagihan,Sisa_Tagihan)
 Value ('".$_POST["Id_Proses"]."',
 		'".$_POST["Nilai_Kontrak"]."',
@@ -49,22 +57,22 @@ while($data=mysql_fetch_array($pk)){
 </tr>
 <tr>
 <td>Nilai_Kontrak</td>
-<td><input type	="text"class="form-control" name="Nilai_Kontrak" id="nilai" readonly></td>
+<td><input type	="number"class="form-control" name="Nilai_Kontrak" id="nilai" readonly></td>
 
 </tr>
 
 <input type	="hidden" class="form-control" name="Id_Kontrak" id="id_kontrak">
 <tr>
 <td>Tgl_Pengajuan</td>
-<td> <input type="text"class="form-control datepicker" name="Tgl_Pengajuan"></td>
+<td> <input type="date"class="form-control datepicker" name="Tgl_Pengajuan"></td>
 </tr>
 <tr>
 <td>Jumlah_Tagihan</td>
-<td> <input type="text"class="form-control" name="Jumlah_Tagihan"></td>
+<td> <input type="number"class="form-control" name="Jumlah_Tagihan"></td>
 </tr>
 <tr>
 <td>Sisa_Tagihan</td>
-<td> <input type="text"class="form-control" name="Sisa_Tagihan" id="top" readonly></td>
+<td> <input type="number"class="form-control" name="Sisa_Tagihan" id="top" readonly></td>
 </tr>
 <tr>
 <td>Jenis Customer</td>

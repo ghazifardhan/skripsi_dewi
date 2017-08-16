@@ -1,7 +1,7 @@
 <?php 
 include('koneksi.php');
 $kodebarang=$_GET['kodebarang'];
-$query=mysql_query("SELECT
+$q_string = "SELECT
   `customer`.`Nama_Customer`,
   `proses`.`progress`,
   `customer`.`Jenis`,
@@ -17,7 +17,10 @@ FROM
   INNER JOIN `customer` ON `kontrak`.`Id_Customer` = `customer`.`Id_Customer`
   INNER JOIN `proses` ON `customer`.`Id_Customer` = `proses`.`Id_Customer`
 WHERE
-  `proses`.`Id_Customer` ='$kodebarang' and `proses`.`status` ='BELUM LUNAS'");
+  `proses`.`Id_Customer` ='$kodebarang' and `proses`.`status` ='BELUM LUNAS'";
+  
+  //dd($q_string);
+$query=mysql_query($q_string);
 $fe=mysql_fetch_array($query);
 $progres=$fe['progress'];
 $jenis=$fe['Jenis'];
@@ -26,7 +29,32 @@ $nilai=$fe['Nilai_kontrak'];
 $payment=$fe['payment'];
 $id_proses=$fe['Id_Proses'];
 $id_kontrak=$fe['Id_Kontrak'];
-$Top=$nilai - $payment;
+if(cekData($id_kontrak))
+{
+	$Top=$nilai - $payment;	
+}
+else
+{
+	$Top = 0;
+}
 echo $progres.",".$jenis.",".$jenis_kontrak.",".$nilai.",".$id_proses.",".$id_kontrak.",".$Top;
 
+
+function cekData($id_kontrak)
+{
+	$q_string = "SELECT count(*) as tot from trx where Id_Kontrak = '$id_kontrak'";
+	//dd($q_string);
+	$query = mysql_query($q_string);
+	$fe=mysql_fetch_array($query);
+	if($fe['tot'] > 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+function dd($var)
+{
+	die(var_dump($var));
+}
 ?>

@@ -43,7 +43,7 @@ include('header.php');
 
 <tr>
 <td>Telpon</td>
-<td><input name="Telpon" type= "text" class="form-control"  value="<?php echo $hasil_data['Telpon'];?>"/></td>
+<td><input name="Telpon" type= "number" class="form-control"  value="<?php echo $hasil_data['Telpon'];?>"/></td>
 </tr>
 
 <tr>

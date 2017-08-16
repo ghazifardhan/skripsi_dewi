@@ -40,7 +40,8 @@ include('header.php');
 </tr>
 <tr>
 <td>Telpon</td>
-<td> <input type="text"name="Telpon" class="form-control"></td>
+
+<td> <input type="number"name="Telpon" class="form-control"></td>
 </tr?>
 <tr>
 <td>Keterangan</td>

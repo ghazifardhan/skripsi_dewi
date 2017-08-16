@@ -54,18 +54,18 @@ error_reporting(0);?>
                         <ul class="nav navbar-nav">
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="dist/img/a<?php echo $_SESSION['auth']['id'] ?>.jpg" class="user-image" alt="User Image">
+                                    <img src="dist/img/dewi.png" class="user-image" alt="User Image">
                                     <span class="hidden-xs">
-                                        <?php echo ucwords($_SESSION['auth']['name']) ?>
+                                        <?php echo ucwords($_SESSION['username']) ?>
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="dist/img/a<?php echo $_SESSION['auth']['id'] ?>.jpg" class="img-circle" alt="User Image">
+                                        <img src="dist/img/dewi.png" class="img-circle" alt="User Image">
                                         <p>
-                                            <?php echo ucwords($_SESSION['auth']['name']) ?>
-                                            <small><?php echo ucwords($_SESSION['auth']['group_name']) ?></small>
+                                               <?php echo ucwords($_SESSION['username']) ?>
+                                            <small><?php echo ucwords($_SESSION['level']) ?></small>
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
@@ -90,10 +90,10 @@ error_reporting(0);?>
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/a<?php echo $_SESSION['auth']['id'] ?>.jpg" class="img-circle" alt="User Image">
+                            <img src="dist/img/dewi.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p><?php echo ucwords($_SESSION['auth']['nama']) ?></p>
+                            <p><?php echo ucwords($_SESSION['level']) ?></p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -109,7 +109,11 @@ error_reporting(0);?>
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
                         <li class="active treeview">
-          <a href="#">
+         
+		<?php 
+		
+		if($_SESSION['level'] == 'Admin'){ ?>
+			 <a href="#">
             <i class="fa fa-dashboard"></i> <span>customer</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
@@ -129,18 +133,20 @@ error_reporting(0);?>
 			<li><a href="tampilan_kontrak.php"><i class="fa fa-circle-o"></i>Tampil Kontraktor</a></li>
           </ul>
         </li>
-		   <li class="treeview">
+		
+		<li class="treeview">
           <a href="#">
-            <i class="fa fa-mobile"></i>
-            <span>Paket</span>
+            <i class="fa fa-files-o"></i>
+            <span>Users</span>
             <span class="label label-primary pull-right"></span>
           </a>
           <ul class="treeview-menu">
-                 <li><a href="paket_pekerjaan.php"><i class="fa fa-circle-o"></i>Paket_Pekerjaan</a></li>
-				   <li><a href="tampilan_paket_pekerjaan.php"><i class="fa fa-circle-o"></i>tampilan_paket_pekerjaan</a></li>
-          
+            <li><a href="input_users.php"><i class="fa fa-circle-o"></i>Input User</a></li>
+			<li><a href="tampilan_user.php"><i class="fa fa-circle-o"></i>Tampil User</a></li>
           </ul>
         </li>
+		
+		
        
         <li class="treeview">
           <a href="#">
@@ -167,7 +173,91 @@ error_reporting(0);?>
          
           </ul>
         </li>
-                    </ul>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Report Tagihan</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="report_tagihan.php"><i class="fa fa-circle-o"></i>report_tagihan</a></li>
+			<li><a href="tampil_approve.php"><i class="fa fa-circle-o"></i>Approve </a></li>
+			<li><a href="grafik.php"><i class="fa fa-circle-o"></i>Report Progres  </a></li>
+         
+          </ul>
+        </li>
+         </ul>
+	<?php }elseif($_SESSION['level'] =='Director') {?>
+	    <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Transaksi</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="tampilan_trx.php"><i class="fa fa-circle-o"></i>Hasil Transaksi</a></li>
+         
+          </ul>
+        </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Report Tagihan</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="report_tagihan.php"><i class="fa fa-circle-o"></i>report_tagihan</a></li>
+         
+          </ul>
+        </li>
+         </ul>
+	
+	
+	<?php }elseif($_SESSION['Konsultan']) { ?>
+	
+	<li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Proses</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Proses.php"><i class="fa fa-circle-o"></i> Pengajuan_Tagihan</a></li>
+            <li><a href="tampilan_proses.php"><i class="fa fa-circle-o"></i> Tampilan_Pengajuan_Tagihan</a></li>
+           
+          </ul>
+        </li>
+	
+	
+	
+	<?php }else{ ?>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Transaksi</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+		  <li><a href="Proses.php"><i class="fa fa-circle-o"></i> Pengajuan_Tagihan</a></li>
+            <li><a href="tampilan_proses.php"><i class="fa fa-circle-o"></i> Tampilan_Pengajuan_Tagihan</a></li>
+            <li><a href="tampilan_trx.php"><i class="fa fa-circle-o"></i>Hasil Transaksi</a></li>
+         
+          </ul>
+        </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Report Tagihan</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="report_tagihan.php"><i class="fa fa-circle-o"></i>report_tagihan</a></li>
+         <li><a href="grafik.php"><i class="fa fa-circle-o"></i>Report Progres  </a></li>
+          </ul>
+        </li>
+		
+		
+	<?php } ?>
                 </section>
                 <!-- /.sidebar -->
             </aside>

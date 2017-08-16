@@ -48,8 +48,8 @@ while ($proses=mysql_fetch_array($list_proses)){
 	
 	</td>
 	
-    <td><a class="btn btn-warning" href="Update_proses.php?Id_Proses=<?php echo $proses['Id_Proses'];?>">Edit</a><td>
-     <td><a class="btn btn-danger" href="delete_proses.php?Id_Proses=<?php echo $proses['Id_Proses'];?>">Delete</a><td>
+    <td><a class="btn btn-warning" href="Update_approve.php?Id_Proses=<?php echo $proses['Id_Proses'];?>">Approve</a><td>
+     
     </tr>
 <?php }?>
 

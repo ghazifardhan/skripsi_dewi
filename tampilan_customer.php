@@ -1,11 +1,12 @@
 <?php
 include('koneksi.php');
-
-?>
-<?php
+session_start();
+if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
+}else{
+	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+}
 include('header.php');
 ?>
-
 
 <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">

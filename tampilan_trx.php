@@ -47,7 +47,11 @@ FROM
   `trx`
   INNER JOIN `proses` ON `trx`.`Id_Proses` = `proses`.`Id_Proses`
   INNER JOIN `customer` ON `proses`.`Id_Customer` = `customer`.`Id_Customer`
-  INNER JOIN `kontrak` ON `trx`.`Id_Kontrak` = `kontrak`.`Id_Kontrak` `customer`.`Jenis` ='Kontraktor'");
+  INNER JOIN `kontrak` ON `trx`.`Id_Kontrak` = `kontrak`.`Id_Kontrak` 
+  
+  
+  
+ -- where `customer`.`Jenis` ='Konsultan'");
 while ($proses=mysql_fetch_array($list_trx)){
 	?>
 	<tr>
@@ -58,7 +62,7 @@ while ($proses=mysql_fetch_array($list_trx)){
 	<td>Rp.<?php echo number_format($proses['Nilai_Kontrak']);?></td>
 	<td><?php echo $proses['Jenis_Kontrak'];?></td>
 	<td><?php echo $proses['Tgl_Pengajuan'];?></td>
-	<td><?php echo $proses['Jumlah_Tagihan'];?></td>
+	<td>Rp.<?php echo number_format($proses['Jumlah_Tagihan']);?></td>
     <td>Rp.<?php echo number_format($proses['Sisa_Tagihan']);?></td>
 
 	
@@ -91,8 +95,7 @@ while ($proses=mysql_fetch_array($list_trx)){
 
 </tr>
 <?php
-
-$list_trx=mysql_query("SELECT
+$qs = "SELECT
   `trx`.*,
   `customer`.`Nama_Customer`,
   `proses`.`progress`,
@@ -104,7 +107,9 @@ FROM
   `trx`
   INNER JOIN `proses` ON `trx`.`Id_Proses` = `proses`.`Id_Proses`
   INNER JOIN `customer` ON `proses`.`Id_Customer` = `customer`.`Id_Customer`
-  INNER JOIN `kontrak` ON `trx`.`Id_Kontrak` = `kontrak`.`Id_Kontrak` where `customer`.`Jenis` ='Kontraktor'");
+  INNER JOIN `kontrak` ON `trx`.`Id_Kontrak` = `kontrak`.`Id_Kontrak` 
+ -- where `customer`.`Jenis` ='Kontraktor'";
+$list_trx=mysql_query($qs);
 while ($proses=mysql_fetch_array($list_trx)){
 	?>
 	<tr>
@@ -115,7 +120,7 @@ while ($proses=mysql_fetch_array($list_trx)){
 	<td>Rp.<?php echo number_format($proses['Nilai_Kontrak']);?></td>
 	<td><?php echo $proses['Jenis_Kontrak'];?></td>
 	<td><?php echo $proses['Tgl_Pengajuan'];?></td>
-	<td><?php echo $proses['Jumlah_Tagihan'];?></td>
+	<td>Rp.<?php echo number_format($proses['Jumlah_Tagihan']);?></td>
     <td>Rp.<?php echo number_format($proses['Sisa_Tagihan']);?></td>
 <!--	<td><a href="<php echo $proses['berita_acara'] ?>"><php echo $proses['berita_acara'] ?></a></td>-->
 	
@@ -135,5 +140,8 @@ while ($proses=mysql_fetch_array($list_trx)){
 
 <?php 
 include('Footer.php');
-
+function dd($var)
+{
+	die(var_dump($var));
+}
 ?>

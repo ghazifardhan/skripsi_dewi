@@ -31,14 +31,11 @@ include('header.php');
 </tr>
 <?php
 
-$list_kontrak=mysql_query(" SELECT `kontrak`.*,
-  `paket_pekerjaan`.`Nama_Perusahaan`,
-  `customer`.`Nama_Customer`,
-  `customer`.`Jenis`
+$list_kontrak=mysql_query(" SELECT
+  `kontrak`.*,
+  `customer`.`Nama_Customer`
 FROM
-  `paket_pekerjaan`
-  INNER JOIN `kontrak` ON `kontrak`.`Id_Paket_Pekerjaan` =
-    `paket_pekerjaan`.`Id_Paket_Pekerjaan`
+  `kontrak`
   INNER JOIN `customer` ON `kontrak`.`Id_Customer` = `customer`.`Id_Customer` where `customer`.`Jenis` ='Konsultan'");
 while ($proses=mysql_fetch_array($list_kontrak)){
 	?>
@@ -48,7 +45,7 @@ while ($proses=mysql_fetch_array($list_kontrak)){
 	<td><?php echo $proses['Id_Kontrak'];?></td>
 	<td><?php echo $proses ['Jenis_Kontrak'];?></td>
     <td>Rp.<?php echo number_format($proses['Nilai_kontrak']);?></td>
-	<td><?php echo $proses['Nama_Perusahaan'];?></td>
+	<td><?php echo $proses['Paket_Pekerjaan'];?></td>
 	<td><?php echo $proses ['Keterangan'];?></td>
 	<td><?php echo $proses ['Nama_Customer'];?></td>
 	
@@ -78,14 +75,11 @@ while ($proses=mysql_fetch_array($list_kontrak)){
 </tr>
 <?php
 
-$list_kontrak=mysql_query("SELECT  `kontrak`.*,
-  `paket_pekerjaan`.`Nama_Perusahaan`,
-  `customer`.`Nama_Customer`,
-  `customer`.`Jenis`
+$list_kontrak=mysql_query("SELECT
+  `kontrak`.*,
+  `customer`.`Nama_Customer`
 FROM
-  `paket_pekerjaan`
-  INNER JOIN `kontrak` ON `kontrak`.`Id_Paket_Pekerjaan` =
-    `paket_pekerjaan`.`Id_Paket_Pekerjaan`
+  `kontrak`
   INNER JOIN `customer` ON `kontrak`.`Id_Customer` = `customer`.`Id_Customer` where `customer`.`Jenis` ='Kontraktor'");
 while ($proses=mysql_fetch_array($list_kontrak)){
 	?>
@@ -95,7 +89,7 @@ while ($proses=mysql_fetch_array($list_kontrak)){
 	<td><?php echo $proses['Id_Kontrak'];?></td>
 	<td><?php echo $proses ['Jenis_Kontrak'];?></td>
     <td>Rp.<?php echo number_format($proses['Nilai_kontrak']);?></td>
-	<td><?php echo $proses['Nama_Perusahaan'];?></td>
+	<td><?php echo $proses['Paket_Pekerjaan'];?></td>
 	<td><?php echo $proses ['Keterangan'];?></td>
 	<td><?php echo $proses ['Nama_Customer'];?></td>
 	

@@ -6,14 +6,13 @@ if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }
 include("koneksi.php");
 if(isset($_POST['simpan'])){
-$query="insert into Kontrak(Id_Kontrak,Jenis_Kontrak,Nilai_Kontrak, Id_Paket_Pekerjaan,Keterangan,Id_Customer)
+$query="insert into Kontrak(Id_Kontrak,Jenis_Kontrak,Nilai_Kontrak, Paket_Pekerjaan,Keterangan,Id_Customer)
 Value ('".$_POST["Id_Kontrak"]."',
 		'".$_POST["Jenis_Kontrak"]."',
 		'".$_POST["Nilai_Kontrak"]."',
-		'".$_POST["Id_Paket_Pekerjaan"]."',
+		'".$_POST["Paket_Pekerjaan"]."',
 		'".$_POST["Keterangan"]."',
 		'".$_POST["Id_Customer"]."')";
-
 $proses=mysql_query($query);
 
 if ($proses){
@@ -37,21 +36,11 @@ include('header.php');
 </tr>
 <tr>
 <td>Nilai_Kontrak</td>
-<td><input type	="text" class="form-control" name="Nilai_Kontrak"></td>
+<td><input type	="number" class="form-control" name="Nilai_Kontrak"></td>
 </tr>
 <tr>
 <td>Paket_Pekerjaan</td>
-<td> <select class="form-control" name="Id_Paket_Pekerjaan">
-<option value="">Pilih paket pekerjaan</option>
-<?php $pk=mysql_query("select * from Paket_Pekerjaan");
-
-while($data=mysql_fetch_array($pk)){
-	?>
-	<option value="<?php echo $data['Id_Paket_Pekerjaan'];?>"><?php echo $data['Nama_Perusahaan'];?></option>
-<?php } ?>
-
-
-</select></td>
+<td> <input type="text" class="form-control" name="Paket_Pekerjaan"></td>
 </tr>
 <tr>
 <td>Keterangan</td>

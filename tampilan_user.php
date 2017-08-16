@@ -1,8 +1,12 @@
 <?php
 include('koneksi.php');
+session_start();
+if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
+}else{
+	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+}
 include('header.php');
 ?>
-
 
 
 <table border="1" class="table table-bordered">

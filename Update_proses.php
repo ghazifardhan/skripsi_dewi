@@ -11,7 +11,7 @@ Tanggal_Pengajuan ='".$_POST['Tanggal_Pengajuan']."',
 progress='".$_POST['progress']."',
 Tgl_Meeting_Progress='".$_POST['Tgl_Meeting_Progress']."'
 where
-Id_Customer='".$_POST['Id_Customer']."'");
+Id_Proses='".$_POST['Id_Proses']."'");
 if($query_update){
 	header("location:tampilan_proses.php");
 }else{
@@ -19,7 +19,7 @@ if($query_update){
 }
 }
 $tampilan_data=mysql_query("select*from proses where
-Id_Customer='".$_GET['Id_Customer']."'");
+Id_Proses='".$_GET['Id_Proses']."'");
 $hasil_data= mysql_fetch_array($tampilan_data);
 
 include('header.php');

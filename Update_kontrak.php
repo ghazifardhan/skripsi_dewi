@@ -9,7 +9,7 @@ if(isset($_POST['save'])){
 $query_update=mysql_query("UPDATE Kontrak set
 Jenis_Kontrak ='".$_POST['Jenis_Kontrak']."',
 Nilai_kontrak='".$_POST['Nilai_kontrak']."',
-Id_Paket_Pekerjaan='".$_POST['Id_Paket_Pekerjaan']."',
+Paket_Pekerjaan='".$_POST['Paket_Pekerjaan']."',
 Keterangan='".$_POST['Keterangan']."',
 Id_Customer='".$_POST['Id_Customer']."'
 where
@@ -43,8 +43,8 @@ include('header.php');
 </tr>
 
 <tr>
-<td>Id_Paket_Pekerjaan</td>
-<td><input name="Id_Paket_Pekerjaan" type= "text" value="<?php echo $hasil_data['Id_Paket_Pekerjaan'];?>"/></td>
+<td>Paket_Pekerjaan</td>
+<td><input name="Paket_Pekerjaan" type= "text" value="<?php echo $hasil_data['Id_Paket_Pekerjaan'];?>"/></td>
 </tr>
 
 <tr>
