@@ -3,26 +3,26 @@ include ('koneksi.php');
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }else{
-	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+    echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 if(isset($_POST['save'])){
-$query_update=mysql_query("UPDATE Kontrak set
+$query_update=mysqli_query($GLOBALS["___mysqli_ston"], "UPDATE Kontrak set
 Jenis_Kontrak ='".$_POST['Jenis_Kontrak']."',
 Nilai_kontrak='".$_POST['Nilai_kontrak']."',
 Paket_Pekerjaan='".$_POST['Paket_Pekerjaan']."',
 Keterangan='".$_POST['Keterangan']."',
 Id_Customer='".$_POST['Id_Customer']."'
 where
-	Id_Kontrak='".$_POST['Id_Kontrak']."'");
+    Id_Kontrak='".$_POST['Id_Kontrak']."'");
 if($query_update){
-	header("location:tampilan_kontrak.php");
+    header("location:tampilan_kontrak.php");
 }else{
-	echo mysql_error();
+    echo mysqli_error($GLOBALS["___mysqli_ston"]);
 }
 }
-$tampilan_data=mysql_query("select*from Kontrak where
+$tampilan_data=mysqli_query($GLOBALS["___mysqli_ston"], "select*from Kontrak where
 Id_Kontrak='".$_GET['Id_Kontrak']."'");
-$hasil_data= mysql_fetch_array($tampilan_data);
+$hasil_data= mysqli_fetch_array($tampilan_data);
 
 include('header.php');
 ?>
@@ -70,4 +70,4 @@ include('header.php');
 <?php 
 include('Footer.php');
 
-?>
+?> 

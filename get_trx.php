@@ -20,8 +20,8 @@ WHERE
   `proses`.`Id_Customer` ='$kodebarang' and `proses`.`status` ='BELUM LUNAS'";
   
   //dd($q_string);
-$query=mysql_query($q_string);
-$fe=mysql_fetch_array($query);
+$query=mysqli_query($GLOBALS["___mysqli_ston"], $q_string);
+$fe=mysqli_fetch_array($query);
 $progres=$fe['progress'];
 $jenis=$fe['Jenis'];
 $jenis_kontrak=$fe['Jenis_Kontrak'];
@@ -31,30 +31,30 @@ $id_proses=$fe['Id_Proses'];
 $id_kontrak=$fe['Id_Kontrak'];
 if(cekData($id_kontrak))
 {
-	$Top=$nilai - $payment;	
+    $Top=$nilai - $payment;    
 }
 else
 {
-	$Top = 0;
+    $Top = 0;
 }
 echo $progres.",".$jenis.",".$jenis_kontrak.",".$nilai.",".$id_proses.",".$id_kontrak.",".$Top;
 
 
 function cekData($id_kontrak)
 {
-	$q_string = "SELECT count(*) as tot from trx where Id_Kontrak = '$id_kontrak'";
-	//dd($q_string);
-	$query = mysql_query($q_string);
-	$fe=mysql_fetch_array($query);
-	if($fe['tot'] > 0)
-	{
-		return true;
-	}
-	return false;
+    $q_string = "SELECT count(*) as tot from trx where Id_Kontrak = '$id_kontrak'";
+    //dd($q_string);
+    $query = mysqli_query($GLOBALS["___mysqli_ston"], $q_string);
+    $fe=mysqli_fetch_array($query);
+    if($fe['tot'] > 0)
+    {
+        return true;
+    }
+    return false;
 }
 
 function dd($var)
 {
-	die(var_dump($var));
+    die(var_dump($var));
 }
-?>
+?> 

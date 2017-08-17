@@ -1,3 +1,4 @@
+
 <?php
 
 /* 
@@ -13,5 +14,5 @@ $connection=array(
     'db'=>'haris',
     'port'=>'3306'
 );
-$dbconnection=mysql_connect($connection['host'], $connection['user'],$connection['password']);
-$db=  mysql_select_db($connection['db']);
+$dbconnection=($GLOBALS["___mysqli_ston"] = mysqli_connect($connection['host'],  $connection['user'], $connection['password']));
+$db=  mysqli_select_db($GLOBALS["___mysqli_ston"], $connection['db']); 

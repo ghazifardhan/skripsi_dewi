@@ -3,24 +3,24 @@ include ('koneksi.php');
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }else{
-	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+    echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 if(isset($_POST['save'])){
-$query_update=mysql_query("UPDATE proses set
+$query_update=mysqli_query($GLOBALS["___mysqli_ston"], "UPDATE proses set
 Tanggal_Pengajuan ='".$_POST['Tanggal_Pengajuan']."',
 progress='".$_POST['progress']."',
 Tgl_Meeting_Progress='".$_POST['Tgl_Meeting_Progress']."'
 where
 Id_Proses='".$_POST['Id_Proses']."'");
 if($query_update){
-	header("location:tampilan_proses.php");
+    header("location:tampilan_proses.php");
 }else{
-	echo mysql_error();
+    echo mysqli_error($GLOBALS["___mysqli_ston"]);
 }
 }
-$tampilan_data=mysql_query("select*from proses where
+$tampilan_data=mysqli_query($GLOBALS["___mysqli_ston"], "select*from proses where
 Id_Proses='".$_GET['Id_Proses']."'");
-$hasil_data= mysql_fetch_array($tampilan_data);
+$hasil_data= mysqli_fetch_array($tampilan_data);
 
 include('header.php');
 ?>
@@ -57,4 +57,4 @@ include('header.php');
 <?php 
 include('Footer.php');
 
-?>
+?> 

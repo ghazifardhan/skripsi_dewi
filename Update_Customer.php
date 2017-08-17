@@ -3,10 +3,10 @@ include ('koneksi.php');
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }else{
-	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+    echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 if(isset($_POST['save'])){
-$query_update=mysql_query("UPDATE customer set
+$query_update=mysqli_query($GLOBALS["___mysqli_ston"], "UPDATE customer set
 Nama_Customer ='".$_POST['Nama_Customer']."',
 Alamat ='".$_POST['Alamat']."',
 Telpon='".$_POST['Telpon']."',
@@ -15,13 +15,13 @@ Jenis='".$_POST['Jenis']."'
 where
 Id_Customer='".$_POST['Id_Customer']."'");
 if($query_update){
-	header("location:tampilan_customer.php");
+    header("location:tampilan_customer.php");
 }else{
-	echo mysql_error();
+    echo mysqli_error($GLOBALS["___mysqli_ston"]);
 }
 }
-$tampilan_data=mysql_query("select*from customer where Id_Customer='".$_GET['Id_Customer']."'");
-$hasil_data= mysql_fetch_array($tampilan_data);
+$tampilan_data=mysqli_query($GLOBALS["___mysqli_ston"], "select*from customer where Id_Customer='".$_GET['Id_Customer']."'");
+$hasil_data= mysqli_fetch_array($tampilan_data);
 
 include('header.php');
 ?>
@@ -70,4 +70,4 @@ include('header.php');
 <?php 
 include('Footer.php');
 
-?>
+?> 

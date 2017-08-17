@@ -1,5 +1,5 @@
 <?php
 include_once('koneksi.php');
-$query=mysql_query("delete from tbl_login where Id_User='".$_GET['Id_User']."'") or die (mysql_error());
-if($query)header("location:tampilan_user.php");else die (mysql_error());
-?>
+$query=mysqli_query($GLOBALS["___mysqli_ston"], "delete from customer where Id_Customer='".$_GET['Id_Customer']."'") or die (mysqli_error($GLOBALS["___mysqli_ston"]));
+if($query)header("location:tampilan_customer.php");else die (mysqli_error($GLOBALS["___mysqli_ston"]));
+?> 

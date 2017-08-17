@@ -3,7 +3,7 @@ include("koneksi.php");
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }else{
-	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+    echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 if(isset($_POST['simpan'])){
 $query="update tbl_login set 
@@ -15,31 +15,31 @@ where
 Id_User='".$_POST["Id_User"]."'";
 
 
-$proses=mysql_query($query);
+$proses=mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 if ($proses){
-	header('location:tampilan_user.php');
+    header('location:tampilan_user.php');
 }else{
-	echo mysql_error();
+    echo mysqli_error($GLOBALS["___mysqli_ston"]);
 }
 }
 include('header.php');
-$user=mysql_query("select * from tbl_login where Id_User='".$_GET['Id_User']."'");
-$data=mysql_fetch_array($user);
+$user=mysqli_query($GLOBALS["___mysqli_ston"], "select * from tbl_login where Id_User='".$_GET['Id_User']."'");
+$data=mysqli_fetch_array($user);
 ?>
 <form method="post"/>
 <table border="1" class="table table-bordered">
 <tr>
 <td>No User</td>
-<td><input type	="text" name="Id_User" class="form-control" value="<?php echo $data['Id_User'];?>" readonly></td>
+<td><input type    ="text" name="Id_User" class="form-control" value="<?php echo $data['Id_User'];?>" readonly></td>
 </tr>
 <tr>
 <td>UserName</td>
-<td><input type	="text"name="UserName" class="form-control" value="<?php echo $data['UserName'];?>" ></td>
+<td><input type    ="text"name="UserName" class="form-control" value="<?php echo $data['UserName'];?>" ></td>
 </tr>
 <tr>
 <td>Password</td>
-<td><input type	="text"name="Password" class="form-control" value="<?php echo $data['Password'];?>" ></td>
+<td><input type    ="text"name="Password" class="form-control" value="<?php echo $data['Password'];?>" ></td>
 </tr>
 <tr>
 <td>Level</td>
@@ -71,4 +71,4 @@ $data=mysql_fetch_array($user);
 <?php 
 include('Footer.php');
 
-?>
+?> 

@@ -3,23 +3,23 @@ include ('koneksi.php');
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }else{
-	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+    echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 if(isset($_POST['save'])){
-$query_update=mysql_query("UPDATE paket_pekerjaan set
+$query_update=mysqli_query($GLOBALS["___mysqli_ston"], "UPDATE paket_pekerjaan set
 Nama_Perusahaan ='".$_POST['Nama_Perusahaan']."',
 Keterangan='".$_POST['Keterangan']."'
 where
 Id_Paket_Pekerjaan='".$_POST['Id_Paket_Pekerjaan']."'");
 if($query_update){
-	header("location :tampilan_paket_pekerjaan.php");
+    header("location :tampilan_paket_pekerjaan.php");
 }else{
-	echo mysql_error();
+    echo mysqli_error($GLOBALS["___mysqli_ston"]);
 }
 }
-$tampilan_data=mysql_query("select * from paket_pekerjaan where
+$tampilan_data=mysqli_query($GLOBALS["___mysqli_ston"], "select * from paket_pekerjaan where
 Id_Paket_Pekerjaan='".$_GET['Id_Paket_Pekerjaan']."'");
-$hasil_data= mysql_fetch_array($tampilan_data);
+$hasil_data= mysqli_fetch_array($tampilan_data);
 
 include('header.php');
 ?>
@@ -52,4 +52,4 @@ include('header.php');
 <?php 
 include('Footer.php');
 
-?>
+?> 

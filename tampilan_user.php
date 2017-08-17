@@ -3,7 +3,7 @@ include('koneksi.php');
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }else{
-	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+    echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 include('header.php');
 ?>
@@ -21,18 +21,18 @@ include('header.php');
 </tr>
 <?php
 
-$list_customer=mysql_query("select * from tbl_login");
-while ($proses=mysql_fetch_array($list_customer)){
-	?>
-	
-	<tr>
-	<td><?php echo $proses['Id_User'];?></td>
-	<td><?php echo $proses ['UserName'];?></td>
-	<td><?php echo $proses['Password'];?></td>
-	<td><?php echo $proses ['Level'];?></td>
-	<td><?php echo $proses ['Status'];?></td>
+$list_customer=mysqli_query($GLOBALS["___mysqli_ston"], "select * from tbl_login");
+while ($proses=mysqli_fetch_array($list_customer)){
+    ?>
+    
+    <tr>
+    <td><?php echo $proses['Id_User'];?></td>
+    <td><?php echo $proses ['UserName'];?></td>
+    <td><?php echo $proses['Password'];?></td>
+    <td><?php echo $proses ['Level'];?></td>
+    <td><?php echo $proses ['Status'];?></td>
 
-	
+    
      <td><a  class="btn btn-warning" href="edit_user.php?Id_User=<?php echo $proses['Id_User'];?>">Edit</a><td>
      <td><a class="btn btn-danger" href="delete_user.php?Id_User=<?php echo $proses['Id_User'];?>">Delete</a><td>
     </tr>
@@ -44,4 +44,4 @@ while ($proses=mysql_fetch_array($list_customer)){
 <?php 
 include('Footer.php');
 
-?>
+?> 

@@ -3,26 +3,26 @@ include ('koneksi.php');
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }else{
-	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+    echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 if(isset($_POST['save'])){
-$query_update=mysql_query("UPDATE trx set
+$query_update=mysqli_query($GLOBALS["___mysqli_ston"], "UPDATE trx set
 Nilai_Kontrak ='".$_POST['Nilai_Kontrak']."',
 Id_Kontrak ='".$_POST['Id_Kontrak']."',
 Tgl_Pengajuan='".$_POST['Tgl_Pengajuan']."',
-Jumlah_Tagihan	='".$_POST['Jumlah_Tagihan']."',
+Jumlah_Tagihan    ='".$_POST['Jumlah_Tagihan']."',
 Sisa_Tagihan='".$_POST['Sisa_Tagihan']."'
 where
 Id_Proses='".$_POST['Id_Proses']."'");
 if($query_update){
-	header("location:tampilan_trx.php");
+    header("location:tampilan_trx.php");
 }else{
-	echo mysql_error();
+    echo mysqli_error($GLOBALS["___mysqli_ston"]);
 }
 }
-$tampilan_data=mysql_query("select*from trx where
+$tampilan_data=mysqli_query($GLOBALS["___mysqli_ston"], "select*from trx where
 Id_Proses='".$_GET['Id_Proses']."'");
-$hasil_data= mysql_fetch_array($tampilan_data);
+$hasil_data= mysqli_fetch_array($tampilan_data);
 include('header.php');
 ?>
 <form method="post"/>
@@ -62,4 +62,4 @@ include('header.php');
 </form>
 <?php 
 include('Footer.php');
-?>
+?> 

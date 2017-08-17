@@ -3,23 +3,23 @@ include("koneksi.php");
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }else{
-	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+    echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 if(isset($_POST['simpan'])){
 $query="insert into customer(Id_Customer,Nama_Customer,Alamat, Telpon,Keterangan,Jenis)
 Value ('".$_POST["Id_Customer"]."',
-		'".$_POST["Nama_Customer"]."',
-		'".$_POST["Alamat"]."',
-		'".$_POST["Telpon"]."',
-		'".$_POST["Keterangan"]."',
-		'".$_POST["Jenis"]."')";
+        '".$_POST["Nama_Customer"]."',
+        '".$_POST["Alamat"]."',
+        '".$_POST["Telpon"]."',
+        '".$_POST["Keterangan"]."',
+        '".$_POST["Jenis"]."')";
 
-$proses=mysql_query($query);
+$proses=mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 if ($proses){
-	header('location:tampilan_customer.php');
+    header('location:tampilan_customer.php');
 }else{
-	echo mysql_error();
+    echo mysqli_error($GLOBALS["___mysqli_ston"]);
 }
 }
 include('header.php');
@@ -28,15 +28,15 @@ include('header.php');
 <table border="1" class="table table-bordered">
 <tr>
 <td>Id_Customer</td>
-<td><input type	="text" name="Id_Customer" class="form-control"></td>
+<td><input type    ="text" name="Id_Customer" class="form-control"></td>
 </tr>
 <tr>
 <td>Nama_Customer</td>
-<td><input type	="text"name="Nama_Customer" class="form-control"></td>
+<td><input type    ="text"name="Nama_Customer" class="form-control"></td>
 </tr>
 <tr>
 <td>Alamat</td>
-<td><input type	="text"name="Alamat" class="form-control"></td>
+<td><input type    ="text"name="Alamat" class="form-control"></td>
 </tr>
 <tr>
 <td>Telpon</td>
@@ -65,4 +65,4 @@ include('header.php');
 <?php 
 include('Footer.php');
 
-?>
+?> 

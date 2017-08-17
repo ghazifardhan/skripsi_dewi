@@ -3,10 +3,10 @@ include('koneksi.php');
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }else{
-	echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
+    echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 if(isset($_POST['cari'])){
-$list_proses=mysql_query("SELECT
+$list_proses=mysqli_query($GLOBALS["___mysqli_ston"], "SELECT
   `trx`.*,
   `customer`.`Nama_Customer`,
   `proses`.`progress`,
@@ -19,7 +19,7 @@ FROM
   INNER JOIN `customer` ON `proses`.`Id_Customer` = `customer`.`Id_Customer`
   INNER JOIN `kontrak` ON `trx`.`Id_Kontrak` = `kontrak`.`Id_Kontrak` where `customer`.`Id_Customer` ='".$_POST['Id_Customer']."'");
 }else{
-	$list_proses=mysql_query("SELECT
+    $list_proses=mysqli_query($GLOBALS["___mysqli_ston"], "SELECT
   `trx`.*,
   `customer`.`Nama_Customer`,
   `proses`.`progress`,
@@ -39,8 +39,8 @@ include('header.php');
 <tr>
 <td><select name="Id_Customer" class="form-control">
 <option value="">Pilih customer</option>
-<?php $cs=mysql_query("select * from customer");
-while($customer=mysql_fetch_array($cs)){ ?>
+<?php $cs=mysqli_query($GLOBALS["___mysqli_ston"], "select * from customer");
+while($customer=mysqli_fetch_array($cs)){ ?>
 <option value="<?php echo $customer['Id_Customer'];?>"><?php echo $customer['Nama_Customer'];?></option>
 <?php } ?>
 
@@ -73,15 +73,15 @@ $progres=0;
 $tagihan=0;
 $sisa=0;
 $kontrak=0;
-while ($proses=mysql_fetch_array($list_proses)){
-	?>
-	
-	<tr>
-	<td><?php echo $proses['Nama_Customer'];?></td>
-	<td><?php echo $proses['Tgl_Pengajuan'];?></td>
-	<td><?php echo $proses['progress'];?></td>
+while ($proses=mysqli_fetch_array($list_proses)){
+    ?>
+    
+    <tr>
+    <td><?php echo $proses['Nama_Customer'];?></td>
+    <td><?php echo $proses['Tgl_Pengajuan'];?></td>
+    <td><?php echo $proses['progress'];?></td>
     <td>Rp.<?php echo number_format($proses['Nilai_Kontrak']);?></td>
-	<td>Rp.<?php echo number_format($proses['Jumlah_Tagihan']);?></td>
+    <td>Rp.<?php echo number_format($proses['Jumlah_Tagihan']);?></td>
     <td>Rp.<?php echo number_format($proses['Sisa_Tagihan']);?></td>
     </tr>
 <?php 
@@ -157,7 +157,7 @@ function printDiv(elementId) {
     window.frames["print_frame"].document.body.innerHTML = '<style>' + a + '</style>' + b;
     window.frames["print_frame"].window.focus();
     window.frames["print_frame"].window.print();
-	
+    
 }
 </script>
 
@@ -168,4 +168,4 @@ function printDiv(elementId) {
 <?php 
 include('Footer.php');
 
-?>
+?> 

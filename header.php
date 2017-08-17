@@ -110,16 +110,16 @@ error_reporting(0);?>
                         <li class="header">MAIN NAVIGATION</li>
                         <li class="active treeview">
          
-		<?php 
-		
-		if($_SESSION['level'] == 'Admin'){ ?>
-			 <a href="#">
+        <?php 
+        
+        if($_SESSION['level'] == 'Admin'){ ?>
+             <a href="#">
             <i class="fa fa-dashboard"></i> <span>customer</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="customer.php"><i class="fa fa-circle-o"></i> Input Customer</a></li>
-			<li><a href="tampilan_customer.php"><i class="fa fa-circle-o"></i>Tampil Customer</a></li>
-			
+            <li><a href="tampilan_customer.php"><i class="fa fa-circle-o"></i>Tampil Customer</a></li>
+            
           </ul>
         </li>
         <li class="treeview">
@@ -130,11 +130,11 @@ error_reporting(0);?>
           </a>
           <ul class="treeview-menu">
             <li><a href="kontrak.php"><i class="fa fa-circle-o"></i>Input Kontrak</a></li>
-			<li><a href="tampilan_kontrak.php"><i class="fa fa-circle-o"></i>Tampil Kontraktor</a></li>
+            <li><a href="tampilan_kontrak.php"><i class="fa fa-circle-o"></i>Tampil Kontraktor</a></li>
           </ul>
         </li>
-		
-		<li class="treeview">
+        
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Users</span>
@@ -142,11 +142,11 @@ error_reporting(0);?>
           </a>
           <ul class="treeview-menu">
             <li><a href="input_users.php"><i class="fa fa-circle-o"></i>Input User</a></li>
-			<li><a href="tampilan_user.php"><i class="fa fa-circle-o"></i>Tampil User</a></li>
+            <li><a href="tampilan_user.php"><i class="fa fa-circle-o"></i>Tampil User</a></li>
           </ul>
         </li>
-		
-		
+        
+        
        
         <li class="treeview">
           <a href="#">
@@ -173,7 +173,7 @@ error_reporting(0);?>
          
           </ul>
         </li>
-		<li class="treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>Report Tagihan</span>
@@ -181,14 +181,14 @@ error_reporting(0);?>
           </a>
           <ul class="treeview-menu">
             <li><a href="report_tagihan.php"><i class="fa fa-circle-o"></i>report_tagihan</a></li>
-			<li><a href="tampil_approve.php"><i class="fa fa-circle-o"></i>Approve </a></li>
-			<li><a href="grafik.php"><i class="fa fa-circle-o"></i>Report Progres  </a></li>
+            <li><a href="tampil_approve.php"><i class="fa fa-circle-o"></i>Approve </a></li>
+            <li><a href="grafik.php"><i class="fa fa-circle-o"></i>Report Progres  </a></li>
          
           </ul>
         </li>
          </ul>
-	<?php }elseif($_SESSION['level'] =='Director') {?>
-	    <li class="treeview">
+    <?php }elseif($_SESSION['level'] =='Director') {?>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>Transaksi</span>
@@ -199,7 +199,7 @@ error_reporting(0);?>
          
           </ul>
         </li>
-		<li class="treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>Report Tagihan</span>
@@ -211,11 +211,11 @@ error_reporting(0);?>
           </ul>
         </li>
          </ul>
-	
-	
-	<?php }elseif($_SESSION['Konsultan']) { ?>
-	
-	<li class="treeview">
+    
+    
+    <?php }elseif($_SESSION['Konsultan']) { ?>
+    
+    <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>Proses</span>
@@ -227,24 +227,24 @@ error_reporting(0);?>
            
           </ul>
         </li>
-	
-	
-	
-	<?php }else{ ?>
-		<li class="treeview">
+    
+    
+    
+    <?php }else{ ?>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>Transaksi</span>
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-		  <li><a href="Proses.php"><i class="fa fa-circle-o"></i> Pengajuan_Tagihan</a></li>
+          <li><a href="Proses.php"><i class="fa fa-circle-o"></i> Pengajuan_Tagihan</a></li>
             <li><a href="tampilan_proses.php"><i class="fa fa-circle-o"></i> Tampilan_Pengajuan_Tagihan</a></li>
             <li><a href="tampilan_trx.php"><i class="fa fa-circle-o"></i>Hasil Transaksi</a></li>
          
           </ul>
         </li>
-		<li class="treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>Report Tagihan</span>
@@ -255,9 +255,9 @@ error_reporting(0);?>
          <li><a href="grafik.php"><i class="fa fa-circle-o"></i>Report Progres  </a></li>
           </ul>
         </li>
-		
-		
-	<?php } ?>
+        
+        
+    <?php } ?>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -269,4 +269,4 @@ error_reporting(0);?>
                     echo '<div class="alert alert-' . $_SESSION['flash']['status'] . '">' . $_SESSION['flash']['msg'] . '</div>';
                     unset($_SESSION['flash']);
                 }
-                ?>
+                ?> 
