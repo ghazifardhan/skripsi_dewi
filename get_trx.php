@@ -1,4 +1,5 @@
-<?php 
+<?php
+header("Content-type:application/json");
 include('koneksi.php');
 $kodebarang=$_GET['kodebarang'];
     $q_string = "SELECT
@@ -29,16 +30,41 @@ $nilai=$fe['Nilai_kontrak'];
 $payment=$fe['payment'];
 $id_proses=$fe['Id_Proses'];
 $id_kontrak=$fe['Id_Kontrak'];
+
+$data = array(
+    'progress' => $progres,
+    'jenis' => $fe['Jenis'],
+    'jenis_kontrak' => $fe['Jenis_Kontrak'],
+    'nilai' => $fe['Nilai_kontrak'],
+    'payment' => $fe['payment'],
+    'id_proses' => $fe['Id_Proses'],
+    'id_kontrak' => $fe['Id_Kontrak'],
+);
+
 if(cekData($id_kontrak))
 {
     $Top=$nilai - $payment;    
 }
 else
 {
-    $Top = 0;
+    $Top = $nilai;
 }
-echo $progres.",".$jenis.",".$jenis_kontrak.",".$nilai.",".$id_proses.",".$id_kontrak.",".$Top;
+//echo $progres.",".$jenis.",".$jenis_kontrak.",".$nilai.",".$id_proses.",".$id_kontrak.",".$Top;
 
+$data = array(
+    'data' => [
+        'progress' => $progres,
+        'jenis' => $fe['Jenis'],
+        'jenis_kontrak' => $fe['Jenis_Kontrak'],
+        'nilai' => $fe['Nilai_kontrak'],
+        'payment' => $fe['payment'],
+        'id_proses' => $fe['Id_Proses'],
+        'id_kontrak' => $fe['Id_Kontrak'],
+        'top' => $Top,
+    ]
+);
+
+echo json_encode($data, true);
 
 function cekData($id_kontrak)
 {
