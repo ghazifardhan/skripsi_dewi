@@ -1,23 +1,23 @@
 <?php 
 include('koneksi.php');
 $kodebarang=$_GET['kodebarang'];
-$q_string = "SELECT
-  `customer`.`Nama_Customer`,
-  `proses`.`progress`,
-  `customer`.`Jenis`,
-  `kontrak`.`Jenis_Kontrak`,
-  `kontrak`.`Nilai_kontrak`,
-  `kontrak`.`payment`,
-  `customer`.`Id_Customer`,
-  `proses`.`Id_Proses`,
-  `proses`.`status`,
-  `kontrak`.`Id_Kontrak`
-FROM
-  `kontrak`
-  INNER JOIN `customer` ON `kontrak`.`Id_Customer` = `customer`.`Id_Customer`
-  INNER JOIN `proses` ON `customer`.`Id_Customer` = `proses`.`Id_Customer`
+    $q_string = "SELECT
+    `customer`.`Nama_Customer`,
+    `proses`.`progress`,
+    `customer`.`Jenis`,
+    `kontrak`.`Jenis_Kontrak`,
+    `kontrak`.`Nilai_kontrak`,
+    `kontrak`.`payment`,
+    `customer`.`Id_Customer`,
+    `proses`.`Id_Proses`,
+    `proses`.`status`,
+    `kontrak`.`Id_Kontrak`
+    FROM
+    `proses`
+    LEFT JOIN `customer` ON `proses`.`Id_Customer` = `customer`.`Id_Customer`   
+    LEFT JOIN `kontrak` ON `customer`.`Id_Customer` = `kontrak`.`Id_Customer`   
 WHERE
-  `proses`.`Id_Customer` ='$kodebarang' and `proses`.`status` ='BELUM LUNAS'";
+  `proses`.`Id_Customer` = '" . $kodebarang . "' and `proses`.`status` ='BELUM LUNAS'";
   
   //dd($q_string);
 $query=mysqli_query($GLOBALS["___mysqli_ston"], $q_string);

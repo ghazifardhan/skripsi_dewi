@@ -57,8 +57,8 @@ while($data=mysqli_fetch_array($pk)){
 </tr>
 <tr>
 <td>Tgl_Meeting_Progress</td>
-<td><input type    ="text"class="form-control datepicker" name="Tgl_Meeting_Progress"/>
-<input type    ="hidden"class="form-control " name="status" value="BELUM LUNAS"/>
+<td><input type="text" class="form-control datepicker" name="Tgl_Meeting_Progress"/>
+<input type="hidden" class="form-control " name="status" value="BELUM LUNAS"/>
 </td>
 </tr>
 <tr>

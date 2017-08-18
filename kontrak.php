@@ -6,12 +6,13 @@ if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }
 include("koneksi.php");
 if(isset($_POST['simpan'])){
-$query="insert into Kontrak(Id_Kontrak,Jenis_Kontrak,Nilai_Kontrak, Paket_Pekerjaan,Keterangan,Id_Customer)
+$query="insert into kontrak(Id_Kontrak,Jenis_Kontrak,Nilai_Kontrak, Paket_Pekerjaan,Keterangan,payment,Id_Customer)
 Value ('".$_POST["Id_Kontrak"]."',
         '".$_POST["Jenis_Kontrak"]."',
         '".$_POST["Nilai_Kontrak"]."',
         '".$_POST["Paket_Pekerjaan"]."',
         '".$_POST["Keterangan"]."',
+        '0',
         '".$_POST["Id_Customer"]."')";
 $proses=mysqli_query($GLOBALS["___mysqli_ston"], $query);
 

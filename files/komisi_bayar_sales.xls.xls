@@ -1,0 +1,63 @@
+<form method="POST"/>
+
+<h3>Laporan Komisi Bayar Sales</h3>
+
+<table border="1" class="table table-bordered">
+
+    <tr>
+        <td>No</td>
+        <td>No transaksi</td>
+        <td>Tanggal</td>
+        <td>Nama Customer</td>
+        <td>Nama Sales</td>
+        <td>Jumlah</td>
+
+    </tr>
+
+    </tr>
+    <tr>
+    <td>1</td>
+    <td>001</td>
+    <td>17/07/2017</td>
+
+        <td>Indofood</td>
+        <td>Cicit</td>
+    <td>50.000</td>
+
+</tr>
+
+    <tr>
+    <td>2</td>
+    <td>123</td>
+    <td>01/08/2017</td>
+
+        <td>Indofood</td>
+        <td>Cicit</td>
+    <td>103.000</td>
+
+</tr>
+
+        <tr>
+    <td colspan="5">Jumlah Komisi Bayar</td>
+    <td>3.060</td>
+    </tr>
+
+
+</table>
+</div>
+
+<iframe id="printing-frame" name="print_frame" src="about:blank" style="display:none;"></iframe>
+<script>
+function printDiv(elementId) {
+    var a = document.getElementById('printing-css').value;
+    var b = document.getElementById(elementId).innerHTML;
+    window.frames["print_frame"].document.title = document.title;
+    window.frames["print_frame"].document.body.innerHTML = '<style>' + a + '</style>' + b;
+    window.frames["print_frame"].window.focus();
+    window.frames["print_frame"].window.print();
+}
+</script>
+<style>
+
+.print-area {border:1px solid red;padding:1em;margin:0 0 1em}
+</style>

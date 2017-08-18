@@ -59,7 +59,8 @@
             "autoWidth": true
         });
         $('.datepicker').datepicker({
-             dateFormat: "yy-mm-dd"
+             dateFormat: "yy-mm-dd",
+             stepMonths: 0,
         });
     });
 </script>
