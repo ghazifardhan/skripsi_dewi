@@ -1,36 +1,46 @@
 <?php
 include("koneksi.php");
 if(isset($_POST['simpan'])){
+
+    $tgl_peng = $_POST["Tanggal_Pengajuan"];
+    $tgl_meet = $_POST["Tgl_Meeting_Progress"];
+    $time_date = date("m");
+    $tgl_pengajuan = date("m", strtotime($tgl_peng));
+    $tgl_meeting = date("m", strtotime($tgl_meet));
+    if($tgl_pengajuan != $time_date || $tgl_meeting != $time_date){
+        echo ("<script type='text/javascript'>alert('Tanggal harus sesuai dengan bulan ini');</script>");
+    } else {
         $allowed_ext    = array("doc", "docx", "xls", "xlsx", "ppt", "pptx", "pdf", "rar", "zip");
-    $file_name        =$_FILES['file']['name'];
-    $file_size        =$_FILES['file']['size'];
-    $file_tmp        =$_FILES['file']['tmp_name'];
-    $gambar         = $file_name;
-    $file_ext       = strtolower(end(explode(".",$gambar)));
-    $tmp            = $file_tmp;
-    $lokasi          = 'files/'.$gambar.'.'.$file_ext;
-    
-        move_uploaded_file($tmp,$lokasi);
-$query="INSERT into proses(Id_Customer,Tanggal_Pengajuan,progress,Tgl_Meeting_Progress,status,berita_acara)
-Value ('".$_POST["Id_Customer"]."',
-        '".$_POST["Tanggal_Pengajuan"]."',
-        '".$_POST["progress"]."',
-        '".$_POST["Tgl_Meeting_Progress"]."',
-        '".$_POST["status"]."',
-        '".$lokasi."')";
+        $file_name        =$_FILES['file']['name'];
+        $file_size        =$_FILES['file']['size'];
+        $file_tmp        =$_FILES['file']['tmp_name'];
+        $gambar         = $file_name;
+        $file_ext       = strtolower(end(explode(".",$gambar)));
+        $tmp            = $file_tmp;
+        $lokasi          = 'files/'.$gambar.'.'.$file_ext;
         
-
-$proses=mysqli_query($GLOBALS["___mysqli_ston"], $query);
-
-if ($proses){
-    header("location:tampilan_proses.php");
-}else{
-    echo mysqli_error($GLOBALS["___mysqli_ston"]);
-}
+            move_uploaded_file($tmp,$lokasi);
+    $query="INSERT into proses(Id_Customer,Tanggal_Pengajuan,progress,Tgl_Meeting_Progress,status,berita_acara)
+    Value ('".$_POST["Id_Customer"]."',
+            '".$_POST["Tanggal_Pengajuan"]."',
+            '".$_POST["progress"]."',
+            '".$_POST["Tgl_Meeting_Progress"]."',
+            '".$_POST["status"]."',
+            '".$lokasi."')";
+            
+    
+    $proses=mysqli_query($GLOBALS["___mysqli_ston"], $query);
+    
+    if ($proses){
+        header("location:tampilan_proses.php");
+    }else{
+        echo mysqli_error($GLOBALS["___mysqli_ston"]);
+    }
+    }
 }
 include('header.php');
 ?>
-
+<?php echo $curr . " - " . $time_date; ?>
 <form method="post" enctype="multipart/form-data">
 <table border="1" class="table table-bordered">
 <tr>
