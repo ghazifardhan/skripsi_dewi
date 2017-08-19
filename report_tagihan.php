@@ -80,9 +80,9 @@ while ($proses=mysqli_fetch_array($list_proses)){
     <td><?php echo $proses['Nama_Customer'];?></td>
     <td><?php echo $proses['Tgl_Pengajuan'];?></td>
     <td><?php echo $proses['progress'];?></td>
-    <td>Rp.<?php echo number_format($proses['Nilai_Kontrak']);?></td>
-    <td>Rp.<?php echo number_format($proses['Jumlah_Tagihan']);?></td>
-    <td>Rp.<?php echo number_format($proses['Sisa_Tagihan']);?></td>
+    <td style="text-align: right">Rp.<?php echo number_format($proses['Nilai_Kontrak']);?></td>
+    <td style="text-align: right">Rp.<?php echo number_format($proses['Jumlah_Tagihan']);?></td>
+    <td style="text-align: right">Rp.<?php echo number_format($proses['Sisa_Tagihan']);?></td>
     </tr>
 <?php 
 $tp=$progres+=$proses['progress'];
@@ -95,9 +95,9 @@ $nk=$kontrak+=$proses['Nilai_kontrak1'];
 <tr>
 <td colspan="2">Jumlah</td>
 <td><?php echo $tp ;?></td>
-<td>Rp.<?php echo number_format($nk);?></td>
-<td>Rp.<?php echo number_format ($tt) ;?></td>
-<td>Rp.<?php echo number_format ($ts) ;?></td>
+<td style="text-align: right">Rp.<?php echo number_format($nk);?></td>
+<td style="text-align: right">Rp.<?php echo number_format ($tt) ;?></td>
+<td style="text-align: right">Rp.<?php echo number_format ($ts) ;?></td>
 </tr>
 </table>
 <style type="text/css">

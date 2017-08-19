@@ -2,7 +2,7 @@
 <?php
 $server = "localhost";
 $user = "root";
-$passsword = "markibid";
+$passsword = "root";
 $database = "dewi";
 
 ($GLOBALS["___mysqli_ston"] = mysqli_connect($server, $user, $passsword));
