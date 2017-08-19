@@ -40,7 +40,6 @@ if(isset($_POST['simpan'])){
 }
 include('header.php');
 ?>
-<?php echo $curr . " - " . $time_date; ?>
 <form method="post" enctype="multipart/form-data">
 <table border="1" class="table table-bordered">
 <tr>
