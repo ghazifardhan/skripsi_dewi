@@ -66,7 +66,7 @@ include('header.php');
 
 <tr>
 <td>Sisa_Tagihan</td>
-<td><input name="Sisa_Tagihan" type="text" class="form-control" value="<?php echo $hasil_data['Sisa_Tagihan'];?>" readonly /></td>
+<td><input name="Sisa_Tagihan" type="text" class="form-control number" value="<?php echo $hasil_data['Sisa_Tagihan'];?>" readonly /></td>
 </tr>
 
 <input type="hidden" name="Id_Proses" class="form-control" value ="<?php echo $hasil_data['Id_Proses'];?>"/>

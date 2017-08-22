@@ -56,11 +56,11 @@ $data = array(
         'progress' => $progres,
         'jenis' => $fe['Jenis'],
         'jenis_kontrak' => $fe['Jenis_Kontrak'],
-        'nilai' => $fe['Nilai_kontrak'],
+        'nilai' => number_format($fe['Nilai_kontrak'],0,",","."),
         'payment' => $fe['payment'],
         'id_proses' => $fe['Id_Proses'],
         'id_kontrak' => $fe['Id_Kontrak'],
-        'top' => $Top,
+        'top' => number_format($Top,0,",","."),
     ]
 );
 

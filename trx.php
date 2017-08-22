@@ -7,22 +7,24 @@ if(isset($_POST['simpan'])){
     $tgl_pengajuan = date("m", strtotime($tgl_peng));
 
     $jml_tagihan = str_replace(".","",$_POST['Jumlah_Tagihan']);
+    $nilai_kontrak = str_replace(".","",$_POST['Nilai_Kontrak']);
+    $sisa_tagihan = str_replace(".","",$_POST['Sisa_Tagihan']);
 
     if($tgl_pengajuan != $time_date){
         echo ("<script type='text/javascript'>alert('Tanggal harus sesuai dengan bulan ini');</script>");
     } else {
-        if($_POST["Sisa_Tagihan"] == 0)
+        if($sisa_tagihan == 0)
         {
-            $jumlah = $_POST['Nilai_Kontrak'] - $jml_tagihan;
+            $jumlah = $nilai_kontrak - $jml_tagihan;
         }
         else
         {
-            $jumlah = $_POST["Sisa_Tagihan"] - $jml_tagihan;
+            $jumlah = $sisa_tagihan - $jml_tagihan;
         }
         //die(var_dump($_POST));
         $query="insert into trx(Id_Proses,Nilai_Kontrak,Id_Kontrak, Tgl_Pengajuan,Jumlah_Tagihan,Sisa_Tagihan)
         Value ('".$_POST["Id_Proses"]."',
-                '".$_POST["Nilai_Kontrak"]."',
+                '".$nilai_kontrak."',
                 '".$_POST["Id_Kontrak"]."',
                 '".$_POST["Tgl_Pengajuan"]."',
                 '".$jml_tagihan."',
@@ -67,7 +69,7 @@ while($data=mysqli_fetch_array($pk)){
 </tr>
 <tr>
 <td>Nilai_Kontrak</td>
-<td><input type="number" class="form-control" name="Nilai_Kontrak" id="nilai" readonly></td>
+<td><input type="text" class="form-control number" name="Nilai_Kontrak" id="nilai" readonly></td>
 
 </tr>
 
@@ -82,7 +84,7 @@ while($data=mysqli_fetch_array($pk)){
 </tr>
 <tr>
 <td>Sisa_Tagihan</td>
-<td> <input type="number" class="form-control" name="Sisa_Tagihan" id="top" readonly></td>
+<td> <input type="text" class="form-control number" name="Sisa_Tagihan" id="top" readonly></td>
 </tr>
 <tr>
 <td>Jenis Customer</td>
