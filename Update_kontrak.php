@@ -6,9 +6,12 @@ if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
     echo ("<script type='text/javascript'>alert('Anda harus login');document.location='../index.php';</script>");
 }
 if(isset($_POST['save'])){
-$query_update=mysqli_query($GLOBALS["___mysqli_ston"], "UPDATE Kontrak set
+
+$nilai_kontrak = str_replace(".","",$_POST['Nilai_kontrak']);
+
+$query_update=mysqli_query($GLOBALS["___mysqli_ston"], "UPDATE kontrak set
 Jenis_Kontrak ='".$_POST['Jenis_Kontrak']."',
-Nilai_kontrak='".$_POST['Nilai_kontrak']."',
+Nilai_kontrak='".$nilai_kontrak."',
 Paket_Pekerjaan='".$_POST['Paket_Pekerjaan']."',
 Keterangan='".$_POST['Keterangan']."',
 Id_Customer='".$_POST['Id_Customer']."'
@@ -20,7 +23,7 @@ if($query_update){
     echo mysqli_error($GLOBALS["___mysqli_ston"]);
 }
 }
-$tampilan_data=mysqli_query($GLOBALS["___mysqli_ston"], "select*from Kontrak where
+$tampilan_data=mysqli_query($GLOBALS["___mysqli_ston"], "select*from kontrak where
 Id_Kontrak='".$_GET['Id_Kontrak']."'");
 $hasil_data= mysqli_fetch_array($tampilan_data);
 
@@ -39,7 +42,7 @@ include('header.php');
 
 <tr>
 <td>Nilai_kontrak</td>
-<td><input name="Nilai_kontrak" type="text" value="<?php echo $hasil_data['Nilai_kontrak'];?>"/></td>
+<td><input name="Nilai_kontrak" class="number" type="text" value="<?php echo $hasil_data['Nilai_kontrak'];?>"/></td>
 </tr>
 
 <tr>

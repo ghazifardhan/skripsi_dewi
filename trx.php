@@ -5,16 +5,19 @@ if(isset($_POST['simpan'])){
     $tgl_peng = $_POST["Tgl_Pengajuan"];
     $time_date = date("m");
     $tgl_pengajuan = date("m", strtotime($tgl_peng));
+
+    $jml_tagihan = str_replace(".","",$_POST['Jumlah_Tagihan']);
+
     if($tgl_pengajuan != $time_date){
         echo ("<script type='text/javascript'>alert('Tanggal harus sesuai dengan bulan ini');</script>");
     } else {
         if($_POST["Sisa_Tagihan"] == 0)
         {
-            $jumlah = $_POST['Nilai_Kontrak'] - $_POST["Jumlah_Tagihan"];
+            $jumlah = $_POST['Nilai_Kontrak'] - $jml_tagihan;
         }
         else
         {
-            $jumlah = $_POST["Sisa_Tagihan"] - $_POST["Jumlah_Tagihan"];
+            $jumlah = $_POST["Sisa_Tagihan"] - $jml_tagihan;
         }
         //die(var_dump($_POST));
         $query="insert into trx(Id_Proses,Nilai_Kontrak,Id_Kontrak, Tgl_Pengajuan,Jumlah_Tagihan,Sisa_Tagihan)
@@ -22,7 +25,7 @@ if(isset($_POST['simpan'])){
                 '".$_POST["Nilai_Kontrak"]."',
                 '".$_POST["Id_Kontrak"]."',
                 '".$_POST["Tgl_Pengajuan"]."',
-                '".$_POST["Jumlah_Tagihan"]."',
+                '".$jml_tagihan."',
                 '".$jumlah."')";
         
         
@@ -30,7 +33,7 @@ if(isset($_POST['simpan'])){
         
         if ($proses){
         
-            $update_kontrak = mysqli_query($GLOBALS["___mysqli_ston"], "update kontrak set payment=payment+'".$_POST['Jumlah_Tagihan']."' where id_kontrak='".$_POST['Id_Kontrak']."'");
+            $update_kontrak = mysqli_query($GLOBALS["___mysqli_ston"], "update kontrak set payment=payment+'".$jml_tagihan."' where id_kontrak='".$_POST['Id_Kontrak']."'");
             $update_proses = mysqli_query($GLOBALS["___mysqli_ston"], "update proses set status='LUNAS' where Id_Proses='".$_POST['Id_Proses']."'");
             
             header('location:tampilan_trx.php');
@@ -75,7 +78,7 @@ while($data=mysqli_fetch_array($pk)){
 </tr>
 <tr>
 <td>Jumlah_Tagihan</td>
-<td> <input type="number" class="form-control" name="Jumlah_Tagihan"></td>
+<td> <input type="text" class="form-control number" name="Jumlah_Tagihan"></td>
 </tr>
 <tr>
 <td>Sisa_Tagihan</td>

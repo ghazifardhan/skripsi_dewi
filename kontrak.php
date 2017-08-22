@@ -6,10 +6,13 @@ if(isset($_SESSION['username']) && isset($_SESSION['authorized'])){
 }
 include("koneksi.php");
 if(isset($_POST['simpan'])){
+
+$nilai_kontrak = str_replace(".","",$_POST["Nilai_Kontrak"]);
+
 $query="insert into kontrak(Id_Kontrak,Jenis_Kontrak,Nilai_Kontrak, Paket_Pekerjaan,Keterangan,payment,Id_Customer)
 Value ('".$_POST["Id_Kontrak"]."',
         '".$_POST["Jenis_Kontrak"]."',
-        '".$_POST["Nilai_Kontrak"]."',
+        '".$nilai_kontrak."',
         '".$_POST["Paket_Pekerjaan"]."',
         '".$_POST["Keterangan"]."',
         '0',
@@ -23,6 +26,7 @@ if ($proses){
 }
 }
 include('header.php');
+echo $nilai_kontrak;
 ?>
 <form method="post"/>
 <table border="1" class="table table-bordered">
@@ -42,7 +46,7 @@ include('header.php');
 </tr>
 <tr>
 <td>Nilai_Kontrak</td>
-<td><input type    ="number" class="form-control" name="Nilai_Kontrak"></td>
+<td><input type="text" class="form-control number" name="Nilai_Kontrak"></td>
 </tr>
 <tr>
 <td>Paket_Pekerjaan</td>

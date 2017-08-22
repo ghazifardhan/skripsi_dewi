@@ -48,8 +48,10 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<!-- Jquery Mask -->
+<script src="js/jquery.mask.min.js"></script>
 <script type="text/javascript">
-    $(function () {
+    $(document).ready(function () {
         $('.data-table').DataTable({
             "paging": true,
             "lengthChange": true,
@@ -58,10 +60,28 @@
             "info": true,
             "autoWidth": true
         });
+
         $('.datepicker').datepicker({
              dateFormat: "yy-mm-dd",
              stepMonths: 0,
         });
+        
+        /*
+        $('.number').keyup(function(event){
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40){
+                event.preventDefault();
+            }
+
+            $(this).val(function(index, value) {
+                return value
+                    .replace(/\D/g, '')
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+                ;
+            });
+        });
+        */
+        $('.number').mask('000.000.000.000.000', {reverse: true});
     });
 </script>
 </body>
